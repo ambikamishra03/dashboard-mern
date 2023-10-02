@@ -66,7 +66,7 @@ export default function Signup() {
   const handleSubmit = async (e) => {
     e.preventDefault(); // synthetic event
     console.log(JSON.stringify({name:credentials.name,username:credentials.username,location:credentials.location,mobile:credentials.mobile,email:credentials.email,password:credentials.password,occupation:credentials.occupation}))
-    const response = await fetch("/api/creatuser", {
+    const response = await fetch("api/creatuser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
