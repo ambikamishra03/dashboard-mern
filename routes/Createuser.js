@@ -90,22 +90,26 @@ router.post(
 
 router.get('/getuser', async (req, res) => {
   try {
-    // Fetch user data from your database (assuming you have a User model)
-    const userData = await User.findOne({ /* your query criteria here */ });
+    // Fetch user data from your database using a query criteria
+    const { id } = req.query; // Assuming you're passing the email as a query parameter
+
+    // Find the user by email
+    const userData = await User.findOne({ id });
 
     if (!userData) {
       return res.status(404).json({ message: 'User not found' });
     }
 
-    const {       
-       name,
+    // Extract the desired fields from userData
+    const {
+      name,
       username,
       location,
       mobile,
       email,
-      password,
+      password, // Note: It's generally not recommended to send the password back to the client
       occupation
-} = userData;
+    } = userData;
 
     // Create a user object with the extracted data
     const userDataObject = {
@@ -114,7 +118,6 @@ router.get('/getuser', async (req, res) => {
       location,
       mobile,
       email,
-      password,
       occupation
     };
 
