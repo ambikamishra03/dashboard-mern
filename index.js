@@ -1,10 +1,13 @@
 const express = require('express');
 var cors = require("cors");
+const dotenv = require('dotenv');
+
+dotenv.config();
 
 const app = express();
 app.use(cors());
 
-const PORT = 5000;
+const PORT = process.env.PORT || 8000;
 const mongoDB= require('./database/db');
 
 mongoDB();
